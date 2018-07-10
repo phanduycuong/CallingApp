@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "534801375273",
+    "firebase_url": "https://calling-470ad.firebaseio.com",
+    "project_id": "calling-470ad",
+    "storage_bucket": "calling-470ad.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:534801375273:android:b45fe3aed92f7fe0",
+        "android_client_info": {
+          "package_name": "com.example.administrator.calling"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "534801375273-91bqgo474vqdhebmh0kv6l2jsf590ggq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.administrator.calling",
+            "certificate_hash": "a9e5e448346ef5bdebb3e47623ff89be80dfb92d"
+          }
+        },
+        {
+          "client_id": "534801375273-vf06ofk3u161s62fkln8b44pb5il2sc9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDuO78u9MZoznRyfISF2-YjvFeXCKywJwg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "534801375273-vf06ofk3u161s62fkln8b44pb5il2sc9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
