@@ -70,7 +70,7 @@ public class LoginActivity extends AppCompatActivity {
                     startActivity(intentmain);
                     finish();
                 }else progressDialog.hide();
-                    Toast.makeText(LoginActivity.this, "Đăng nhập thất bại", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(LoginActivity.this, "Đăng nhập thất bại", Toast.LENGTH_SHORT).show();
             }
         });
 

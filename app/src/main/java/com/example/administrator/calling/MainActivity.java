@@ -1,6 +1,8 @@
 package com.example.administrator.calling;
 
 import android.content.Intent;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -13,15 +15,33 @@ import com.google.firebase.auth.FirebaseUser;
 public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private Toolbar mToolbar;
+    private ViewPager mviewPager;
+    private SectionsPagerAdapter mSectionsApdapter;
+
+    private TabLayout mtablayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mAuth = FirebaseAuth.getInstance();
+
+
         mToolbar = (Toolbar)findViewById(R.id.main_page_toolbar);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setTitle("Calling App");
+
+
+//        Viewpager
+        mviewPager = (ViewPager)findViewById(R.id.tabPager);
+        mSectionsApdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+        mviewPager.setAdapter(mSectionsApdapter);
+
+//        Tablayout
+        mtablayout = (TabLayout)findViewById(R.id.main_tabs);
+        mtablayout.setupWithViewPager(mviewPager);
+
+
     }
 
     @Override

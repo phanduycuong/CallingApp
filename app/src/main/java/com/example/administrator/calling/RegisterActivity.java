@@ -16,15 +16,22 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
 
 public class RegisterActivity extends AppCompatActivity {
     private EditText mDisplayName, mEmail, mPassword;
     private Button mCreateBtn;
 
     private FirebaseAuth mAuth;
+    private DatabaseReference mdatabase;
 
     private ProgressDialog mprogressDialog;
     private Toolbar mToolbar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,19 +64,37 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
-    private void register_Auth(String display_name, String email, String password) {
+    private void register_Auth(final String display_name, String email, String password) {
         mprogressDialog.setMessage("Vui lòng đợi ...");
         mprogressDialog.show();
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                    Intent MainIntent = new Intent(RegisterActivity.this, MainActivity.class);
-                    MainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(MainIntent);
-                    finish();
+
+                    FirebaseUser current_user = FirebaseAuth.getInstance().getCurrentUser();
+                    String uid = current_user.getUid();
+                    mdatabase = FirebaseDatabase.getInstance().getReference().child("User").child(uid);
+                    HashMap<String, String> userMap = new HashMap<>();
+                    userMap.put("name", display_name);
+                    userMap.put("status" , "Yêu màu tím, thích màu hồng, ghét sự giả dối");
+                    userMap.put("image", "default");
+                    userMap.put("thumb_image", "default");
+                    mdatabase.setValue(userMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()){
+                                mprogressDialog.dismiss();
+                                Intent MainIntent = new Intent(RegisterActivity.this, MainActivity.class);
+                                MainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                startActivity(MainIntent);
+                                finish();
+                            }
+                        }
+                    });
+
                 } else mprogressDialog.hide();
-                Toast.makeText(RegisterActivity.this, "Đăng ký thất bại", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(RegisterActivity.this, "Đăng ký thất bại", Toast.LENGTH_SHORT).show();
 
             }
         });
