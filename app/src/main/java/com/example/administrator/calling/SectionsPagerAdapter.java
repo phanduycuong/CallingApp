@@ -38,11 +38,11 @@ class SectionsPagerAdapter extends FragmentPagerAdapter{
 
         switch (position){
             case 0:
-                return "Thong bao";
+                return "Thông báo";
             case 1:
-                return "Tro chuyen";
+                return "Nhắn tin";
             case 2:
-                return "Ban be";
+                return "Bạn bè";
                 default:return super.getPageTitle(position);
         }
 

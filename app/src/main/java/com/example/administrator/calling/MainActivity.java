@@ -11,6 +11,7 @@ import android.view.MenuItem;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
@@ -72,6 +73,11 @@ public class MainActivity extends AppCompatActivity {
              FirebaseAuth.getInstance().signOut();
              Intent intentStart = new Intent(MainActivity.this, StartAcitivity.class);
              startActivity(intentStart);
+             finish();
+         }
+         if (item.getItemId() == R.id.main_settings_btn){
+             Intent intentsettings = new Intent(MainActivity.this, SettingsActivity.class);
+             startActivity(intentsettings);
              finish();
          }
 
